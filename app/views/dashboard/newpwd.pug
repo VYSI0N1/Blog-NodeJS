@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .middle-box.text-center.loginscreen.animated.fadeInDown
+        div
+            div
+                h1.logo-name B'X
+            h3 Mot de passe oublié
+            p Renseigné votre nouveau mot de passe ci-dessous
+            form.m-t(role='form' action='/dashboard/users/forgotpwd2/' + email + '&&' + tokenpwd, method='post')
+                .form-group
+                    input.form-control(type='password', placeholder='nouveau mot de passe', required='', name="pwd")
+                    input(type='hidden', value=email, name="email")
+                    input(type='hidden', value=tokenpwd, name="tokenpwd")
+                button.btn.btn-primary.block.full-width.m-b(type='submit') Changer mon mot de passe
+            p.m-t
+                small © 2016 - 2017 - Blog Xnov

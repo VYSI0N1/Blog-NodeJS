@@ -1,0 +1,99 @@
+extends layout
+
+block content
+    #wrapper
+        include includes/sidebar
+        #page-wrapper.gray-bg.dashbard-1
+            include includes/navbar
+            .row.wrapper.border-bottom.white-bg.page-heading
+                .col-lg-10
+                    h2= 'Bienvenue ' + user.firstname + ' ' + user.lastname
+                    ol.breadcrumb
+                        li
+                            a(href='/dashboard') Dashboard
+                .col-lg-2
+            .wrapper.wrapper-content.animated.fadeIn
+                .row
+                    .col-lg-3
+                        .widget.style1.red-bg
+                            .row
+                                .col-xs-4
+                                    i.fa.fa-eye.fa-5x
+                                .col-xs-8.text-right
+                                    span  Utilisateurs en temps réel
+                                    h2.font-bold.connected-number 0
+                    .col-lg-3
+                        .widget.style1.navy-bg
+                            .row
+                                .col-xs-4
+                                    i.fa.fa-user-o.fa-5x
+                                .col-xs-8.text-right
+                                    span  Visite unique
+                                    h2.font-bold SOON
+                    .col-lg-3
+                        .widget.style1.yellow-bg
+                            .row
+                                .col-xs-4
+                                    i.fa.fa-pencil-square-o.fa-5x
+                                .col-xs-8.text-right
+                                    span  Articles
+                                    h2.font-bold=count
+                    .col-lg-3
+                        .widget.style1.lazur-bg
+                            .row
+                                .col-xs-4
+                                    i.fa.fa-comments.fa-5x
+                                .col-xs-8.text-right
+                                    span  Commentaires
+                                    h2.font-bold=countCom
+                .row
+                    .col-lg-6
+                        .ibox.float-e-margins
+                            .ibox-title
+                                h5 Liste des 5 derniers articles
+                                .ibox-tools
+                                    a.collapse-link
+                                        i.fa.fa-chevron-up
+                            .ibox-content.table-responsive
+                                table.table.table-hover.no-margins
+                                    thead
+                                        tr
+                                            th Titre article
+                                            th Auteur
+                                            th Date
+                                            th Statut
+                                            th Lien
+                                    tbody
+                                        each post in posts
+                                            tr
+                                                td=post.title
+                                                td= user.pseudo
+                                                td
+                                                    i.fa.fa-clock-o=post.createdAt
+                                                td
+                                                    span.label.label-primary
+                                                    if post.published
+                                                        | Publié
+                                                    else
+                                                        | Brouillon
+                                                td
+                                                    a(href='/blog/' + post.slug) Voir
+                    .col-lg-6
+                        .ibox.float-e-margins
+                            .ibox-title
+                                h5 5 derniers commentaires publiés
+                                .ibox-tools
+                                    a.collapse-link
+                                        i.fa.fa-chevron-up
+                            .ibox-content.no-padding
+                                ul.list-group
+                                    each comment in comments
+                                        li.list-group-item
+                                            p
+                                                a.text-info(href='')= '@' + comment.author
+                                                |  --
+                                                span= ' ' + comment.content
+                                            small.block.text-muted
+                                                i.fa.fa-clock-o= comment.createdAt
+            include includes/footer
+    block javascripts

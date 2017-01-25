@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    include ./includes/navbar
+    .main-content
+        .container
+            .row
+                .col-md-10.col-md-offset-1
+                    article
+                        .post-area
+                            each user in users
+                                .single-about
+                                    .about-us-text
+                                        h4.text-uppercase=user.pseudo
+                                        h5=user.firstname + ' ' + user.lastname
+                                        h5=user.rang
+                                        p=user.description
+    footer.footer-widget-section
+        include ./includes/footer

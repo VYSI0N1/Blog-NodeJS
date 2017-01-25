@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    .middle-box.text-center.loginscreen.animated.fadeInDown
+        div
+            div
+                h1.logo-name B'X
+            h3 Mot de passe oublié
+            p Renseigné votre adresse email ci-dessous pour réinitialiser votre mot de passe.
+            form.m-t(role='form' action='/dashboard/users/forgotpwd' method='post')
+                .form-group
+                    input.form-control(type='email', placeholder='Email', required='', name="email")
+                button.btn.btn-primary.block.full-width.m-b(type='submit') Modifier son mot de passe
+            p.m-t
+                small © 2016 - 2017 - Blog Xnov

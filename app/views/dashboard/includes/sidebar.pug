@@ -1,0 +1,66 @@
+nav.navbar-default.navbar-static-side(role='navigation')
+    .sidebar-collapse
+        ul#side-menu.nav.metismenu
+            li.nav-header
+                .dropdown.profile-element
+                    strong.font-bold X'nov
+                .logo-element
+                    | X'nov
+            li.active
+                a(href='/dashboard/')
+                    i.fa.fa-dashboard
+                    span.nav-label Accueil
+            li
+                a(href='#')
+                    i.fa.fa-user
+                    span.nav-label Mon compte
+                    span.fa.arrow
+                ul.nav.nav-second-level.collapse
+
+                    li
+                        a(href='/dashboard/users/profil') Mon Profil
+                    li
+                        a(href='/dashboard/posts/posts') Mes articles
+            li
+                a(href='#')
+                    i.fa.fa-newspaper-o
+                    span.nav-label Articles
+                    span.fa.arrow
+                ul.nav.nav-second-level.collapse
+                    li
+                        a(href='/dashboard/posts/') Tous les articles
+                    li
+                        a(href='/dashboard/posts/add') Ajouter un article
+                    li
+                        a(href='/dashboard/posts/categories') Toutes les catégories
+                    li
+                        a(href='/dashboard/posts/addcategory') Ajouter une catégorie
+                    li
+                        a(href='/dashboard/posts/draft') Brouillons
+                    li
+                        a(href='/dashboard/posts/categories') Catégories
+            li
+                a(href='/dashboard/medias/')
+                    i.fa.fa-picture-o
+                    span.nav-label Medias
+            //li
+            //    a(href='#')
+            //        i.fa.fa-file
+            //        span.nav-label Pages
+            //        span.fa.arrow
+            //    ul.nav.nav-second-level.collapse
+            //        li
+            //            a(href='/dashboard/pages/') Toutes les pages
+            //        li
+            //            a(href='/dashboard/pages/add') Ajouter une page
+            if session == 'Administrateur'
+                li
+                    a(href='#')
+                        i.fa.fa-users
+                        span.nav-label Utilisateurs
+                        span.fa.arrow
+                    ul.nav.nav-second-level.collapse
+                        li
+                            a(href='/dashboard/users/') Tous les utilisateurs
+                        li
+                            a(href='/dashboard/users/add') Ajouter un utilisateur

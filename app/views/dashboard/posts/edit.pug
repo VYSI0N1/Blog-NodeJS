@@ -1,0 +1,88 @@
+extends ../layout
+
+block content
+    #wrapper
+        include ../includes/sidebar
+        #page-wrapper.gray-bg.dashbard-1
+            include ../includes/navbar
+            .row.wrapper.border-bottom.white-bg.page-heading
+                .col-lg-10
+                    h2 Editer un article
+                    ol.breadcrumb
+                        li
+                            a(href='/dashboard') Dashboard
+                        li.active
+                            strong Editer un article
+                .col-lg-2
+            .wrapper.wrapper-content.animated.fadeIn
+                .row
+                    .col-lg-12
+                        .ibox.float-e-margins
+                            .ibox-title
+                                h5 Editer un article
+                            .ibox-content
+                                form.form-horizontal(method='post' action='/dashboard/posts/edit/' + post._id, enctype='multipart/form-data')
+                                    .form-group
+                                        label.col-sm-2.control-label Titre
+                                        .col-sm-10
+                                            input.form-control(type='text' name="title" value=post.title)
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Contenu
+                                        .col-sm-10
+                                            textarea#mytextarea.form-control(name="content" style='height: 400px;')= post.content
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Catégorie(s)
+                                        .col-sm-10
+                                            select.chosen-select(data-placeholder='Selectionner une ou des catégories', name='categories', multiple='', style='width:350px;', tabindex='4')
+                                                option(value=cats selected='')=cats
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Tag(s)
+                                        .col-sm-10
+                                            input.tagsinput.form-control(type='text', value=tags ,name='tags')
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Photo à la une
+                                        .col-sm-10
+                                            .fileinput.fileinput-new.input-group(data-provides='fileinput')
+                                                .form-control(data-trigger='fileinput')
+                                                    i.glyphicon.glyphicon-file.fileinput-exists
+                                                    span.fileinput-filename
+                                                span.input-group-addon.btn.btn-default.btn-file
+                                                    span.fileinput-new Choisir l'image
+                                                    span.fileinput-exists Changer
+                                                    input(type='file', name='file')
+                                                a.input-group-addon.btn.btn-default.fileinput-exists(href='#', data-dismiss='fileinput') Enlever
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label
+                                            | Enregistrer en brouillon ?
+                                            br
+                                            small.text-navy IMPORTANT
+                                        .col-sm-10
+                                            div
+                                                label
+                                                    input#optionsRadios1(type='radio', checked='', value='oui', name='optionsRadios')
+                                                    |  Oui
+                                            div
+                                                label
+                                                    input#optionsRadios2(type='radio', value='non', name='optionsRadios')
+                                                    |  Non
+                                    .hr-line-dashed
+                                    .form-group
+                                        .col-sm-4.col-sm-offset-2
+                                            button.btn.btn-primary(type='submit') Enregistrer
+                                            a.btn.btn-danger(href='/dashboard/posts/delete/' + post._id)  Supprimer cet article
+            include ../includes/footer
+    block javascripts
+        script.
+            tinymce.init({
+                selector: '#mytextarea'
+            });
+
+
+            $('.tagsinput').tagsinput({ tagClass: 'label label-primary'});
+
+            $('.chosen-select').chosen({width: "100%", name:'cat'});

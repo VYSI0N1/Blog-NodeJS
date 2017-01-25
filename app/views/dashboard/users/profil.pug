@@ -1,0 +1,208 @@
+extends ../layout
+
+block content
+    #wrapper
+        include ../includes/sidebar
+        #page-wrapper.gray-bg.dashbard-1
+
+            include ../includes/navbar
+            .row.wrapper.border-bottom.white-bg.page-heading
+                .col-lg-10
+                    h2 Mon profil
+                    ol.breadcrumb
+                        li
+                            a(href='/dashboard') Dashboard
+                        li.active
+                            strong Mon profil
+                .col-lg-2
+            .wrapper.wrapper-content.animated.fadeIn
+                .row.m-b-lg.m-t-lg
+                    .col-md-12
+                        .profile-image
+                            a(data-toggle='modal', href='#imageprofil')
+                                img.img-circle.circle-border.m-b-md(src='/uploads/' + user.imageuser, alt='profile')
+                            #imageprofil.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true')
+                                .modal-dialog
+                                    .modal-content.animated.fadeIn
+                                        form(action='/dashboard/users/imageprofil/' + user._id, method='post', enctype='multipart/form-data')
+                                            .modal-header
+                                                button.close(type='button', data-dismiss='modal')
+                                                    span(aria-hidden='true') ×
+                                                    span.sr-only Fermer
+                                                i.fa.fa-user.modal-icon
+                                                h4.modal-title Image de profil
+                                            .modal-body
+                                                p
+                                                    strong Ici vous pouvez modifier votre photo de profil
+                                                .fileinput.fileinput-new.input-group(data-provides='fileinput')
+                                                    .form-control(data-trigger='fileinput')
+                                                        i.glyphicon.glyphicon-file.fileinput-exists
+                                                        span.fileinput-filename
+                                                    span.input-group-addon.btn.btn-default.btn-file
+                                                        span.fileinput-new Choisir l'image
+                                                        span.fileinput-exists Changer
+                                                        input(type='file', name='file')
+                                                    a.input-group-addon.btn.btn-default.fileinput-exists(href='#', data-dismiss='fileinput') Enlever
+
+                                            .modal-footer
+                                                .form-group
+                                                    button.btn.btn-white(type='button', data-dismiss='modal') Fermer
+                                                    button.btn.btn-primary(type='submit') Enregistrer
+                        .profile-info
+                            div
+                                div
+                                    h2.no-margins= user.firstname + ' ' + user.lastname
+                                    h3= user.pseudo
+                                    h4= user.rang
+                .row
+                    .col-lg-6
+                        .ibox
+                            .ibox-content
+                                h3= 'Description' + ' ' + user.firstname + ' ' + user.lastname
+
+                                p.small= user.description
+                                    br
+                                    br
+                                button.btn.btn-primary(type='button', data-toggle='modal', data-target='#description')
+                                    | Modifer ma description
+                                #description.modal.inmodal(tabindex='-1', role='dialog', aria-hidden='true')
+                                    .modal-dialog
+                                        .modal-content.animated.fadeIn
+                                            form.form-horizontal(method='post', action='/dashboard/users/description/' + user._id)
+                                                .modal-header
+                                                    button.close(type='button', data-dismiss='modal')
+                                                        span(aria-hidden='true') ×
+                                                        span.sr-only Close
+                                                    i.fa.fa-laptop.modal-icon
+                                                    h4.modal-title Ma description
+                                                .modal-body
+                                                    p
+                                                        strong Modifier votre description
+                                                        | dans le champs ci-dessous et cliquer sur "Enregistrer" pour prendre
+                                                        | en compte vos modifications.
+                                                    .form-group
+                                                        textarea#textarea.form-control(maxlength='250', name='description')= user.description
+                                                        #textarea_feedback
+                                                .modal-footer
+                                                    .form-group
+                                                        button.btn.btn-white(type='button', data-dismiss='modal') Fermer
+                                                        button.btn.btn-primary(type='submit') Enregistrer
+                        .ibox
+                            .ibox-content
+                                h3 Informations personnelles
+                                form.form-horizontal(method='post' action='/dashboard/users/edit2/' + user._id)
+                                    .form-group
+                                        label.col-sm-2.control-label Pseudo
+                                        .col-sm-10
+                                            input.form-control(type='text' name="pseudo" value=user.pseudo)
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Nom
+                                        .col-sm-10
+                                            input.form-control(type='text' name="lastname" value=user.lastname)
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Prénom
+                                        .col-sm-10
+                                            input.form-control(type='text' name="firstname" value=user.firstname)
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Email
+                                        .col-sm-10
+                                            input.form-control(type='email' name="email" value=user.email)
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Mot de passe
+                                        .col-sm-10
+                                            input.form-control(type='password', name='password')
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Confirmation du Mot de passe
+                                        .col-sm-10
+                                            input.form-control(type='password', name='passwordconfirm')
+                                    .hr-line-dashed
+                                        input(type='hidden', value=user.rang, name='typeaccount')
+                                    .form-group
+                                        .col-sm-4.col-sm-offset-2
+                                            button.btn.btn-primary(type='submit') Editer mon compte
+                                            a.btn.btn-danger(href='/dashboard/users/delete/' + user._id)  Supprimer mon compte
+
+                    .col-lg-6.m-b-lg
+                        #vertical-timeline.vertical-container.light-timeline.no-margins
+                            .vertical-timeline-block
+                                .vertical-timeline-icon.navy-bg
+                                    i.fa.fa-comments
+                                .vertical-timeline-content
+                                    h2 Nouveau commentaire de @PseudoUser sur :
+                                    h4 Titre de l'article
+                                    p
+                                        | Web sites still in their infancy. Various versions have evolved over the
+                                        | years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                                    a.btn.btn-sm.btn-info(href='#')  Répondre à ce commentaire
+                                    span.vertical-date
+                                        small Date du commentaire
+                            .vertical-timeline-block
+                                .vertical-timeline-icon.blue-bg
+                                    i.fa.fa-file-text
+                                .vertical-timeline-content
+                                    h2 Vous avez publié un article :
+                                    h4 Titre de l'article
+                                    p
+                                        | Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                        | Lorem Ipsum has been the industry's standard dummy text ever since.
+                                    a.btn.btn-sm.btn-success(href='#')  Voir l'article
+                                    span.vertical-date
+                                        | Date de publication
+                                        br
+                                        small X commentaire
+            include ../includes/footer
+
+    block javascripts
+        script.
+            $(document).ready(function () {
+                $('.dataTables-example').DataTable({
+                    pageLength: 25,
+                    responsive: true,
+                    dom: '<"html5buttons"B>lTfgitp',
+                    buttons: [
+                        {extend: 'copy'},
+                        {extend: 'csv'},
+                        {extend: 'excel', title: 'ExampleFile'},
+                        {extend: 'pdf', title: 'ExampleFile'},
+                        {
+                            extend: 'print',
+                            customize: function (win) {
+                                $(win.document.body).addClass('white-bg');
+                                $(win.document.body).css('font-size', '10px');
+                                $(win.document.body).find('table')
+                                        .addClass('compact')
+                                        .css('font-size', 'inherit');
+                            }
+                        }
+                    ]
+                });
+            });
+
+            $(document).ready(function () {
+                var text_max = 250;
+                $('#textarea_feedback').html(text_max + ' caractères restants');
+                $('#textarea').keyup(function () {
+                    var text_length = $('#textarea').val().length;
+                    var text_remaining = text_max - text_length;
+                    $('#textarea_feedback').html(text_remaining + ' caractères restants');
+                });
+            });
+
+            $(function () {
+                $('#textarea').on('submit', function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: '/dashboard/users/description',
+                        type: 'POST',
+                        data: $('#textarea').serialize(),
+                        success: function (data) {
+                            alert('successfully submitted')
+                        }
+                    });
+                });
+            });

@@ -1,0 +1,80 @@
+extends ../layout
+
+block content
+    #wrapper
+        include ../includes/sidebar
+        #page-wrapper.gray-bg.dashbard-1
+            include ../includes/navbar
+            .row.wrapper.border-bottom.white-bg.page-heading
+                .col-lg-10
+                    h2 Ajouter un utilisateur
+                    ol.breadcrumb
+                        li
+                            a(href='/dashboard') Dashboard
+                        li.active
+                            strong Ajouter un utilisateur
+                .col-lg-2
+            .wrapper.wrapper-content.animated.fadeIn
+                .row
+                    .col-lg-12
+                        .ibox.float-e-margins
+                            .ibox-title
+                                h5
+                                    | Ajouter un utilisateur
+                            .ibox-content
+                                form.form-horizontal(method='post' action='/dashboard/users/add')
+                                    .form-group
+                                        label.col-sm-2.control-label Pseudo
+                                        .col-sm-10
+                                            input.form-control(type='text' name="pseudo")
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Nom
+                                        .col-sm-10
+                                            input.form-control(type='text' name="lastname")
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Prénom
+                                        .col-sm-10
+                                            input.form-control(type='text' name="firstname")
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Email
+                                        .col-sm-10
+                                            input.form-control(type='email' name="email")
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Mot de passe
+                                        .col-sm-10
+                                            input.form-control(type='password', name='password')
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label
+                                            | Type de compte
+                                            br
+                                            small.text-navy 1 seul choix possible
+                                        .col-sm-10
+                                            div
+                                                label
+                                                    input#optionsRadios1(type='radio', checked='', value='Administrateur', name='typeaccount')
+                                                    |  Administrateur
+                                            div
+                                                label
+                                                    input#optionsRadios2(type='radio', value='Moderateur', name='typeaccount')
+                                                    |  Modérateur
+                                            div
+                                                label
+                                                    input#optionsRadios3(type='radio', value='Editeur', name='typeaccount')
+                                                    |  Editeur
+                                            div
+                                                label
+                                                    input#optionsRadios4(type='radio', value='Guest', name='typeaccount')
+                                                    |  Guest
+                                    .hr-line-dashed
+                                    .form-group
+                                        .col-sm-4.col-sm-offset-2
+                                            button.btn.btn-primary(type='submit') Créer un nouvel utilisateur
+
+            include ../includes/footer
+
+    block javascripts

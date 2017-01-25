@@ -1,0 +1,80 @@
+extends ../layout
+
+block content
+    #wrapper
+        include ../includes/sidebar
+        #page-wrapper.gray-bg.dashbard-1
+            include ../includes/navbar
+            .row.wrapper.border-bottom.white-bg.page-heading
+                .col-lg-6
+                    h2 Toutes les pages
+                    ol.breadcrumb
+                        li
+                            a(href='/dashboard') Dashboard
+                        li.active
+                            strong Toutes les pages
+                .col-lg-6
+                    .title-action
+                        a.btn.btn-primary.btn-sm(href='/dashboard/pages/add') Ajouter une page
+            .wrapper.wrapper-content.animated.fadeInRight
+                .row
+                    .col-lg-12
+                        .ibox.float-e-margins
+                            .ibox-title
+                                h5 Liste de toutes les pages
+                            .ibox-content
+                                .table-responsive
+                                    table.table.table-striped.table-bordered.table-hover.dataTables-example
+                                        thead
+                                            tr
+                                                th Nom de la page
+                                                th Auteur
+                                                th Date
+                                                th Statut
+                                                th Actions
+                                        tbody
+                                            tr
+                                                td À propos
+                                                td Adrien
+                                                td 12/12/2016
+                                                td Publié
+                                                td Editer
+                                            tr
+                                                td Contact
+                                                td Mickael
+                                                td 12/12/2016
+                                                td Publié
+                                                td Editer
+                                            tr
+                                                td L'équipe
+                                                td Lucas
+                                                td 12/12/2016
+                                                td Publié
+                                                td Editer
+            include ../includes/footer
+
+    block javascripts
+        script.
+            $(document).ready(function () {
+                $('.dataTables-example').DataTable({
+                    pageLength: 25,
+                    responsive: true,
+                    dom: '<"html5buttons"B>lTfgitp',
+                    buttons: [
+                        {extend: 'copy'},
+                        {extend: 'csv'},
+                        {extend: 'excel', title: 'ExampleFile'},
+                        {extend: 'pdf', title: 'ExampleFile'},
+                        {
+                            extend: 'print',
+                            customize: function (win) {
+                                $(win.document.body).addClass('white-bg');
+                                $(win.document.body).css('font-size', '10px');
+                                $(win.document.body).find('table')
+                                        .addClass('compact')
+                                        .css('font-size', 'inherit');
+                            }
+                        }
+                    ]
+                });
+            });

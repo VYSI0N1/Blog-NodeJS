@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    include ./includes/navbar
+    .main-content
+        .container
+            .row
+                .col-md-10.col-md-offset-1
+                    each post in posts
+                        article.post
+                            .post-thumb
+                                a(href='#')
+                                    img(src='/uploads/' + post.img, alt='')
+                                a.post-thumb-overlay.text-center(href='/blog/' + post.slug)
+                                    .text-uppercase.text-center Voir plus
+                            .post-content
+                                header.entry-header.text-center.text-uppercase
+                                    h6
+                                        a(href='/categories/')= post.categories
+                                    h1.entry-title
+                                        a(href='/blog/' + post.slug)= post.title
+                                .entry-content!=post.preview + '...'
+                                    .btn-continue-reading.text-center.text-uppercase
+                                        a.more-link(href='/blog/' + post.slug) Continuer la lecture
+                                .social-share
+                                    span.social-share-title.pull-left.text-capitalize
+                                        span= 'Par ' + post.author + ' le ' + post.updatedAt
+                    ul.pagination
+                        li.active
+                            a(href='#') 1
+                        li
+                            a(href='#') 2
+                        li
+                            a(href='#')
+                                i.fa.fa-angle-double-right
+    footer.footer-widget-section
+        include ./includes/footer

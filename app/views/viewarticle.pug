@@ -1,0 +1,87 @@
+extends layout
+
+block content
+    include ./includes/navbar
+    .main-content
+        .container
+            .row
+                .col-md-10.col-md-offset-1
+                    article.post
+                        .post-thumb
+                            a(href='#')
+                                img(src='/uploads/' + post.img, alt='')
+                        .post-content
+                            header.entry-header.text-center.text-uppercase
+                                h6
+                                    a(href='/categories/' + post.categories)= post.categories
+                                h1.entry-title
+                                    a(href='#')= post.title
+                            .entry-content
+                                p!= post.content
+                            .decoration
+                                each tag in tags
+                                    a.btn.btn-default(href='/tags/' + tag)=tag
+                            .social-share
+                                span.social-share-title.pull-left.text-capitalize
+                                    span= 'Par ' + post.author + ' le ' + post.updatedAt
+                                ul.text-center.pull-right
+                                    div#share
+                    .row
+                        .col-md-6
+                            .single-blog-box
+                                a(href='../../' + prev.slug)
+                                    img(src='/uploads/' + prev.img, alt='')
+                                    .overlay
+                                        .promo-text
+                                            p
+                                                i.pull-left.fa.fa-angle-left
+                                            h5= prev.title
+                        .col-md-6
+                            .single-blog-box
+                                a(href='../../' + next.slug)
+                                    img(src='/uploads/' + next.img, alt='')
+                                    .overlay
+                                        .promo-text
+                                            p
+                                                i.pull-right.fa.fa-angle-right
+                                            h5= next.title
+                    if count > 1
+                        h4= count + ' commentaires'
+                    else
+                        h4= count + ' commentaire'
+
+                    each comment in comments
+                        .bottom-comment
+                            .comment-img
+                                img.img-circle(src='/images/imagesusers/users.png', alt='')
+                            .comment-text
+                                a.replay.btn.pull-right(href='#name')  Répondre
+                                h5= comment.author
+                                p.comment-date=comment.updatedAt
+                                p.para=comment.content
+                    #add-comment
+                    #comment.leave-comment
+                        h4 Laisser un commentaire
+                        form.form-horizontal.contact-form(role='form', method='post', action='/dashboard/posts/addcomment')
+                            if user
+                                .form-group
+                                    .col-md-6
+                                        input#a.form-control(type='text', name='author', value=user.pseudo)
+                                    .col-md-6
+                                        input#e.form-control(type='email', name='email', value=user.email)
+                                .form-group
+                                    .col-md-12
+                                        textarea#m.form-control(rows='6', name='content', placeholder='Votre message ici...')
+                            else
+                                .form-group
+                                    .col-md-6
+                                        input#name.form-control(type='text', name='author', placeholder='Pseudo')
+                                    .col-md-6
+                                        input#email.form-control(type='email', name='email', placeholder='Email')
+                                .form-group
+                                    .col-md-12
+                                        textarea.form-control(rows='6', name='content', placeholder='Votre message ici...')
+                            input#i(type='hidden', name='id', value=post._id)
+                            button.btn.send-btn(type='submit') Publier un commentaire
+    footer.footer-widget-section
+        include ./includes/footer

@@ -1,0 +1,42 @@
+.footer
+    .pull-right
+        div
+            strong Copyright
+            |  Blog X'Nov © 2017
+.small-chat-box.fadeInRight.animated
+    .heading(draggable='true')
+        small.chat-date.pull-right
+            | 02.19.2015
+        | Support
+    .content
+        .left
+            .author-name
+                | Adrien - Support
+                small.chat-date= ' 10:02 am'
+            .chat-message.active
+                | Bonjour. Nous serons prochainement disponible en cas de besoin 24h/24
+                | dans la prochaine mise à jour du site.
+        //.right
+        //    .author-name
+        //        | Mick Smith
+        //        small.chat-date
+        //            | 11:24 am
+        //    .chat-message
+        //        | Lorem Ipsum is simpl.
+        //.left
+        //    .author-name
+        //        | Mick Lane
+        //        small.chat-date
+        //            | 08:45 pm
+        //    .chat-message.active
+        //        | I belive that. Lorem Ipsum is simply dummy text.
+    .form-chat
+        .input-group.input-group-sm
+            input.form-control(type='text')
+            span.input-group-btn
+                button.btn.btn-primary(type='button')
+                    | Envoyer
+#small-chat
+    span.badge.badge-warning.pull-right 1
+    a.open-small-chat
+        i.fa.fa-comments

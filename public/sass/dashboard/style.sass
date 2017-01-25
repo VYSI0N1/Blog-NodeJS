@@ -1,0 +1,40 @@
+/* Theme by Adrien Ferreira */
+
+// Google Fonts
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700")
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,300,500,700")
+
+// Variables, Mixins
+@import "variables"
+
+// Theme Elements
+@import "typography"
+@import "navigation"
+@import "top_navigation"
+@import "buttons"
+@import "badgets_labels"
+@import "elements"
+@import "sidebar"
+@import "base"
+@import "pages"
+@import "chat"
+@import "metismenu"
+@import "spinners"
+
+
+// Media query style
+@import "media"
+
+// Custom style
+@import "custom"
+
+// Clear layout on print mode
+@media print
+  nav.navbar-static-side
+    display: none
+
+  body
+    overflow: visible !important
+
+  #page-wrapper
+    margin: 0

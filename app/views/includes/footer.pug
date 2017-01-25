@@ -1,0 +1,51 @@
+.container
+    .row
+        .col-md-4
+            aside.footer-widget
+                .about-img
+                    img(src='/images/frontblog/footer-logo.png', alt='Logo Blog X\'nov')
+                .about-content
+                    | Blog parlant des nouvelles technologies en proposant des tests, vidéos, débriefs et bien plus
+                    | encore !
+        .col-md-4
+            aside.footer-widget
+                //h3.widget-title.text-uppercase Derniers commentaires
+                //#myCarousel.carousel.slide(data-ride='carousel')
+                //    // Indicator
+                //    ol.carousel-indicators
+                //        li.active(data-target='#myCarousel', data-slide-to='0')
+                //        li(data-target='#myCarousel', data-slide-to='1')
+                //    .carousel-inner(role='listbox')
+                //        each comment in comments
+                //            .item
+                //                .single-review
+                //                    .review-text
+                //                        p=comment.content
+                //                    .author-id
+                //                        img(src='/images/frontblog/author.png', alt='')
+                //                        .author-text
+                //                            h4=comment.author
+                //            //.item
+                //            //    .single-review
+                //            //        .review-text
+                //            //            p=comment.content
+                //            //        .author-id
+                //            //            img(src='/images/frontblog/author.png', alt='')
+                //            //            .author-text
+                //            //                h4=comment.author
+        .col-md-4
+            aside.footer-widget.news-letter
+                h3.widget-title.text-uppercase.text-center Abonnez-vous à la Newsletter
+                form(action='/dashboard/users/newsletter', method="post")
+                    input(type='email', name='email', placeholder='Votre adresse email')
+                    input.text-uppercase.text-center.btn.btn-subscribe(type='submit', value='S\'inscrire')
+.footer-copy
+    .container
+        .row
+            .col-md-12
+                .text-center
+                    | © 2016 - 2017 ||
+                    a(href='') Blog Xnov ||
+                    |  Développé avec
+                    i.fa.fa-heart
+                    a(href='/dashboard') || Dashboard

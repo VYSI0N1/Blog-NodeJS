@@ -1,0 +1,77 @@
+extends ../layout
+
+block content
+    #wrapper
+        include ../includes/sidebar
+        #page-wrapper.gray-bg.dashbard-1
+            include ../includes/navbar
+            .row.wrapper.border-bottom.white-bg.page-heading
+                .col-lg-6
+                    h2 Tous les brouillons
+                    ol.breadcrumb
+                        li
+                            a(href='/dashboard') Dashboard
+                        li.active
+                            strong Tous les brouillons
+                .col-lg-6
+                    .title-action
+                        a.btn.btn-primary.btn-sm(href='/dashboard/posts/add') Ajouter un article
+            .wrapper.wrapper-content.animated.fadeIn
+                .row
+                    .col-lg-12
+                        .ibox.float-e-margins
+                            .ibox-title
+                                h5 Liste de tous les brouillons
+                            .ibox-content
+                                .table-responsive
+                                    table.table.table-striped.table-bordered.table-hover.dataTables-example
+                                        thead
+                                            tr
+                                                th Nom article
+                                                th Auteur
+                                                th Date
+                                                th Categorie(s)
+                                                th Tag(s)
+                                                th Statut
+                                                th Actions
+                                        tbody
+                                            each post in posts
+                                                tr
+                                                    td
+                                                        a(href='/blog/' + post.slug, target='_blank')
+                                                            span= post.title
+                                                    td= post.author
+                                                    td= post.createdAt
+                                                    td= post.categories
+                                                    td= post.tags
+                                                    td= post.published
+                                                    td
+                                                        a(href='/dashboard/posts/edit/' + post._id) Editer
+
+            include ../includes/footer
+
+    block javascripts
+        script.
+            $(document).ready(function () {
+                $('.dataTables-example').DataTable({
+                    pageLength: 25,
+                    responsive: true,
+                    dom: '<"html5buttons"B>lTfgitp',
+                    buttons: [
+                        {extend: 'copy'},
+                        {extend: 'csv'},
+                        {extend: 'excel', title: 'ExampleFile'},
+                        {extend: 'pdf', title: 'ExampleFile'},
+                        {
+                            extend: 'print',
+                            customize: function (win) {
+                                $(win.document.body).addClass('white-bg');
+                                $(win.document.body).css('font-size', '10px');
+                                $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                            }
+                        }
+                    ]
+                });
+            });

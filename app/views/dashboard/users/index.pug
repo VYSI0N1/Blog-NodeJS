@@ -1,0 +1,78 @@
+extends ../layout
+
+block content
+    #wrapper
+        include ../includes/sidebar
+        #page-wrapper.gray-bg.dashbard-1
+            include ../includes/navbar
+            .row.wrapper.border-bottom.white-bg.page-heading
+                .col-lg-6
+                    h2 Tous les utilisateurs
+                    ol.breadcrumb
+                        li
+                            a(href='/dashboard') Dashboard
+                        li.active
+                            strong Tous les utilisateurs
+                .col-lg-6
+                    .title-action
+                        a.btn.btn-primary.btn-sm(href='/dashboard/users/add') Ajouter un utilisateur
+            .wrapper.wrapper-content.animated.fadeIn
+                .row
+                    .col-lg-12
+                        .ibox.float-e-margins
+                            .ibox-title
+                                h5 Liste de tous les utilisateurs inscrits
+                            .ibox-content
+                                .table-responsive
+                                    table.table.table-striped.table-bordered.table-hover.dataTables-example
+                                        thead
+                                            tr
+                                                th Pseudo
+                                                th Nom
+                                                th Prénom
+                                                th Email
+                                                th Rang
+                                                th Statut
+                                                th Date de création
+                                                th Dernière modification
+                                                th Action
+                                        tbody
+                                            each user in users
+                                                tr
+                                                    td= user.pseudo
+                                                    td= user.lastname
+                                                    td= user.firstname
+                                                    td= user.email
+                                                    td= user.rang
+                                                    td= user.activated
+                                                    td= user.createdAt
+                                                    td= user.updatedAt
+                                                    td
+                                                        a(href='/dashboard/users/edit/' + user._id) Editer
+            include ../includes/footer
+
+    block javascripts
+        script.
+            $(document).ready(function () {
+                $('.dataTables-example').DataTable({
+                    pageLength: 25,
+                    responsive: true,
+                    dom: '<"html5buttons"B>lTfgitp',
+                    buttons: [
+                        {extend: 'copy'},
+                        {extend: 'csv'},
+                        {extend: 'excel', title: 'Liste_des_utilisateurs-Blog_XNov'},
+                        {extend: 'pdf', title: 'Liste_des_utilisateurs-Blog_XNov'},
+                        {
+                            extend: 'print',
+                            customize: function (win) {
+                                $(win.document.body).addClass('white-bg');
+                                $(win.document.body).css('font-size', '10px');
+                                $(win.document.body).find('table')
+                                        .addClass('compact')
+                                        .css('font-size', 'inherit');
+                            }
+                        }
+                    ]
+                });
+            });

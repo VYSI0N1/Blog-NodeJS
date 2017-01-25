@@ -1,0 +1,22 @@
+extends layout
+
+block content
+    .middle-box.text-center.loginscreen.animated.fadeInDown
+        div
+            div
+                h1.logo-name B'X
+            h3 Espace de connexion
+            p Connectez-vous ci-dessous pour accéder à votre espace réservé.
+            form.m-t(role='form' action='/dashboard/login' method='post')
+                .form-group
+                    input.form-control(type='email', placeholder='Email', required='', name="email")
+                .form-group
+                    input.form-control(type='password', placeholder='Mot de passe', required='', name="password")
+                button.btn.btn-primary.block.full-width.m-b(type='submit') Se connecter
+                a(href='/dashboard/users/forgotpwd')
+                    small Mot de passe oublié ?
+                p.text-muted.text-center
+                    small Vous n'avez pas de compte ?
+                a.btn.btn-sm.btn-white.btn-block(href='/devenircontributeur') Devenir contributeur?
+            p.m-t
+                small © 2016 - 2017 - Blog Xnov

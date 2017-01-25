@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+    #wrapper
+        include ../includes/sidebar
+        #page-wrapper.gray-bg.dashbard-1
+            include ../includes/navbar
+            .row.wrapper.border-bottom.white-bg.page-heading
+                .col-lg-6
+                    h2 Médias
+                    ol.breadcrumb
+                        li
+                            a(href='/dashboard') Dashboard
+                        li.active
+                            strong Tous les médias
+                .col-lg-6
+            .wrapper.wrapper-content.animated.fadeIn
+                .row
+                    .col-lg-12
+                        .ibox.float-e-margins
+                            .ibox-title
+                                h5 Liste de tous les articles
+                            .ibox-content
+                                h2 Lightbox image gallery
+                                    .lightBoxGallery
+                                        a(href='/uploads/public1484418598284-11.jpg', title='Image from Unsplash', data-gallery='')
+                                            img(src='/uploads/public1484418598284-11.jpg')
+
+                                        #blueimp-gallery.blueimp-gallery
+                                            .slides
+                                            h3.title
+                                            a.prev ‹
+                                            a.next ›
+                                            a.close ×
+                                            a.play-pause
+                                            ol.indicator

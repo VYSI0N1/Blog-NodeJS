@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    include ./includes/navbar
+    .main-content
+        .container
+            .row
+                .col-md-10.col-md-offset-1
+                    .leave-comment.mr0
+                        p
+                            | Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus aliquam deserunt esse
+                            | fugit iste magnam, neque nesciunt nihil possimus ratione repellendus veniam vero. Accusamus
+                            | deleniti deserunt esse illo recusandae.
+                        h3.text-uppercase Nous contacter
+                        br
+                        form.form-horizontal.contact-form(role='form', method='post', action='/contact')
+                            .form-group
+                                .col-md-12
+                                    input#name.form-control(type='text', name='pseudo', placeholder='Nom Prénom / Pseudo', required='')
+                            .form-group
+                                .col-md-12
+                                    input#email.form-control(type='email', name='email', placeholder='Email', required='')
+                            .form-group
+                                .col-md-12
+                                    input#subject.form-control(type='text', name='subject', placeholder='Objet')
+                            .form-group
+                                .col-md-12
+                                    textarea.form-control(rows='6', name='content', placeholder='Votre message ...', required='')
+                            button.btn.send-btn(type='submit', name='submit') Envoyer votre message
+    footer.footer-widget-section
+        include ./includes/footer

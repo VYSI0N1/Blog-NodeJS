@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+    #wrapper
+        include ../includes/sidebar
+        #page-wrapper.gray-bg.dashbard-1
+            include ../includes/navbar
+            .row.wrapper.border-bottom.white-bg.page-heading
+                .col-lg-10
+                    h2 Editer une catégorie
+                    ol.breadcrumb
+                        li
+                            a(href='/dashboard') Dashboard
+                        li.active
+                            strong Editer une catégorie
+                .col-lg-2
+            .wrapper.wrapper-content.animated.fadeIn
+                .row
+                    .col-lg-12
+                        .ibox.float-e-margins
+                            .ibox-title
+                                h5 Editer une catégorie
+                            .ibox-content
+                                form.form-horizontal(method='post' action='/dashboard/posts/editcategory/' + category._id)
+                                    .form-group
+                                        label.col-sm-2.control-label Titre
+                                        .col-sm-10
+                                            input.form-control(type='text' name="name" value=category.name)
+                                    .hr-line-dashed
+                                    .form-group
+                                        label.col-sm-2.control-label Description
+                                        .col-sm-10
+                                            textarea#mytextarea.form-control(name="desc" style='height: 400px;')=category.desc
+                                    .hr-line-dashed
+                                    .form-group
+                                        .col-sm-4.col-sm-offset-2
+                                            button.btn.btn-primary(type='submit') Enregistrer
+                                            a.btn.btn-danger(href='/dashboard/posts/deletecategory/' + category._id)  Supprimer cette catégorie
+            include ../includes/footer
+    block javascripts
+        script.
+            tinymce.init({
+                selector: '#mytextarea'
+            });
+
+
+            $('.tagsinput').tagsinput({ tagClass: 'label label-primary'});
+
+            $('.chosen-select').chosen({width: "100%", name:'cat'});
