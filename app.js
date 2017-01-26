@@ -12,7 +12,7 @@ var sassMiddleware = require('node-sass-middleware');
 var methodOverride = require('method-override');
 var FileStore = require('session-file-store')(Session);var session = Session({
   store: new FileStore({ encrypt : true }),
-  secret: '41647269656e457441647269656e457441647269656e636f75636f756c',
+  secret: 'YourSecret',
   resave: true,
   saveUninitialized: false
 });
