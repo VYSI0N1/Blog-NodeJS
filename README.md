@@ -16,3 +16,4 @@ Le but était de développer un blog en NodeJS avec MongoDB. Les fonctionnalité
     * mettre en brouillon ou non l'article.
     * Mise en place d'un WYSIWYG pour rédiger les articles.
     
+ Projet fait en équipe avec [@Schmurf](https://github.com/Schmurf)
