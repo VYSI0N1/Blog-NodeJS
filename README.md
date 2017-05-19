@@ -1,5 +1,5 @@
 # Blog Xnov
-## Projet étudiant en cours de NodeJS.
+## Projet étudiant de NodeJS.
 
 Le but était de développer un blog en NodeJS avec MongoDB. Les fonctionnalités intégrées sont :
 * Un système de slug pour l'url des articles.
